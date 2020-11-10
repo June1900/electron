@@ -1,3 +1,15 @@
+//在渲染进程中：
+const { ipcRenderer } = require('electron');
+//发送asynchronous-message事件到主进程
+ipcRenderer.send('asynchronous-message', 'ping');
+//接收主进程的asynchronous-reply通知
+ipcRenderer.on('asynchronous-reply', (event, arg) => {
+	console.log('asynchronous-reply : args:', arg);
+	const { num, ping } = arg;
+	const message = `Asynchronous message reply: num:${num},ping:${ping}`;
+	document.getElementById('async-reply').innerHTML = message;
+});
+
 window.addEventListener('DOMContentLoaded', () => {
 	const replaceText = (selector, text) => {
 		const element = document.getElementById(selector);
@@ -10,7 +22,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	const btn = document.getElementById('newButton');
 	btn.onclick = () => {
-    console.log('点击');
-    
+		// 点击发送通信事件
+		console.log('点击');
+		const reply = ipcRenderer.sendSync('synchronous-message', 'ping');
+		const message = `Synchronous message reply: ${reply}`;
+		document.getElementById('sync-reply').innerHTML = message;
 	};
 });
