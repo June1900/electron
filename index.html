@@ -15,12 +15,19 @@
   Chromium <span id="chrome-version"></span>,
   and Electron <span id="electron-version"></span>.
 
+  <div id='async-reply'></div>
   <div>
-    <button id='newButton'>打开新的窗口</button>
+    <button id='newButton'>进程通信</button>
+  </div>
+  <div id='sync-reply'></div>
+
+  <div>
+    <button id='openDialog'>打开对话框</button>
   </div>
 
-  <div id='async-reply'></div>
-  <div id='sync-reply'></div>
+  <div>
+    <button id='openWindow'>新窗口</button>
+  </div>
 
   <!-- You can also require other files to run in this process -->
   <script src="./render/renderer.js"></script>

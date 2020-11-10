@@ -2,12 +2,14 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 function createWindow () {
-	const mainWindow = new BrowserWindow({
+	let mainWindow = new BrowserWindow({
 		width: 800,
 		height: 600,
 		webPreferences: {
 			// preload: path.join(__dirname, 'preload.js')
-			nodeIntegration: true
+			nodeIntegration: true,
+			// Whether to enable the remote module.
+			enableRemoteModule: true
 		}
 	});
 	// 然后加载应用的 index.html。对应的index.html 就是初始界面。
@@ -48,5 +50,5 @@ ipcMain.on('asynchronous-message', (event, arg) => {
 });
 // 接收渲染进程的synchronous-message通知
 ipcMain.on('synchronous-message', (event, arg) => {
-  event.returnValue = 'pong'
-})
+	event.returnValue = 'pong';
+});
