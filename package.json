@@ -17,7 +17,7 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^10.1.5"
+    "electron": "^23.1.0"
   },
   "dependencies": {
     "xlsx": "^0.16.8",
